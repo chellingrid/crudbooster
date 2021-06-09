@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{{cbLang("page_title_forgot")}} : {{$appname}}</title>
+    <title>{{cbLang("new_password_message")}} : {{$appname}}</title>
     <meta name='generator' content='CRUDBooster.com'/>
     <meta name='robots' content='noindex,nofollow'/>
     <link rel="shortcut icon"
@@ -24,7 +24,6 @@
     <style type="text/css">
         .login-page, .register-page {
             background: {{ CRUDBooster::getSetting("login_background_color")?:'#dddddd'}} url('{{ CRUDBooster::getSetting("login_background_image")?asset(CRUDBooster::getSetting("login_background_image")):asset('vendor/crudbooster/assets/bg_blur3.jpg') }}');
-            
         }
     </style>
 </head>
@@ -40,30 +39,28 @@
     <div class="login-box-body">
 
         @if ( Session::get('message') != '' )
-            <div class='alert alert-warning'>
+            <div class='alert alert-{{ Session::get("message_type") }}'>
                 <?php echo Session::get('message') ?>
             </div>
         @endif
 
-        <p class="login-box-msg">{{cbLang("forgot_message_admin")}}</p>
-        <form action="{{ route('postForgot') }}" method="post">
+        <p class='login-box-msg'>{{cbLang("new_password_message")}}</p>
+        <form autocomplete='off' action="{{ route('postNewPassword') }}" method="post">
             <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-            <div class="form-group has-feedback">
-                <input type="email" class="form-control" name='email' required placeholder="E-mail"/>
-                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            <input type="hidden" name="hash" value="{{ $hash }}"/>
+            
+            <div class="form-group">
+                <input autocomplete='off' type="password" class="form-control" name='password' required placeholder="Senha"/>
             </div>
-            <div class="row">
-                <div class="col-xs-8">
-                    {{cbLang("forgot_text_try_again")}} <a href='{{route("getLogin")}}'>{{cbLang("click_here")}}</a>
-                </div><!-- /.col -->
-                <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">{{cbLang("button_submit")}}</button>
-                </div><!-- /.col -->
+            <div class="form-group">
+                <input autocomplete='off' type="password" class="form-control" name='password_confirmation' required placeholder="Confirmar Senha"/>
+            </div>
+            <div class='row'>
+                <div class='col-xs-12'>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat"><i class='fa fa-lock'></i> {{cbLang("button_new_password")}}</button>
+                </div>
             </div>
         </form>
-
-        <br/>
-        <!--a href="#">I forgot my password</a-->
 
     </div><!-- /.login-box-body -->
 </div><!-- /.login-box -->

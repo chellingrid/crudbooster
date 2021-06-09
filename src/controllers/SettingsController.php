@@ -32,7 +32,7 @@ class SettingsController extends CBController
         if (Request::get('group_setting')) {
             $value = Request::get('group_setting');
         } else {
-            $value = 'General Setting';
+            $value = 'Configuração Geral';
         }
 
         $this->form[] = ['label' => 'Group', 'name' => 'group_setting', 'value' => $value];
@@ -47,7 +47,7 @@ class SettingsController extends CBController
         $this->form[] = [
             "label" => "Radio / Select Data",
             "name" => "dataenum",
-            "placeholder" => "Example : abc,def,ghi",
+            "placeholder" => "Exemplo : abc,def,ghi",
             "jquery" => "
 			function show_radio_data() {
 				var cit = $('#content_input_type').val();

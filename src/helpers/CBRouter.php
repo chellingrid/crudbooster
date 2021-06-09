@@ -56,6 +56,8 @@ class CBRouter
 
             Route::post('unlock-screen', ['uses' => 'AdminController@postUnlockScreen', 'as' => 'postUnlockScreen']);
             Route::get('lock-screen', ['uses' => 'AdminController@getLockscreen', 'as' => 'getLockScreen']);
+            Route::post('new-password/', ['uses' => 'AdminController@postNewPassword', 'as' => 'postNewPassword']);
+            Route::get('new-password/{hash}', ['uses' => 'AdminController@getNewPassword', 'as' => 'getNewPassword']);
             Route::post('forgot', ['uses' => 'AdminController@postForgot', 'as' => 'postForgot']);
             Route::get('forgot', ['uses' => 'AdminController@getForgot', 'as' => 'getForgot']);
             Route::post('register', ['uses' => 'AdminController@postRegister', 'as' => 'postRegister']);
@@ -63,6 +65,7 @@ class CBRouter
             Route::get('logout', ['uses' => 'AdminController@getLogout', 'as' => 'getLogout']);
             Route::post('login', ['uses' => 'AdminController@postLogin', 'as' => 'postLogin']);
             Route::get('login', ['uses' => 'AdminController@getLogin', 'as' => 'getLogin']);
+            Route::get('help', ['uses' => 'AdminController@getHelp', 'as' => 'getHelp']);
         });
     }
 

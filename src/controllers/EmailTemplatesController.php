@@ -37,7 +37,7 @@ class EmailTemplatesController extends \crocodicstudio\crudbooster\controllers\C
             "type" => "text",
             "required" => true,
             "validation" => "required|min:3|max:255|alpha_spaces",
-            "placeholder" => "You can only enter the letter only",
+            "placeholder" => "Somente letras e espaços",
         ];
         $this->form[] = ["label" => "Slug", "type" => "text", "name" => "slug", "required" => true, 'validation' => 'required|unique:cms_email_templates,slug'];
         $this->form[] = ["label" => "Subject", "name" => "subject", "type" => "text", "required" => true, "validation" => "required|min:3|max:255"];
@@ -50,7 +50,7 @@ class EmailTemplatesController extends \crocodicstudio\crudbooster\controllers\C
             "type" => "text",
             "required" => false,
             "width" => "col-sm-6",
-            'placeholder' => 'Optional',
+            'placeholder' => 'Opcional',
         ];
         $this->form[] = [
             "label" => "From Email",
@@ -59,7 +59,7 @@ class EmailTemplatesController extends \crocodicstudio\crudbooster\controllers\C
             "required" => false,
             "validation" => "email",
             "width" => "col-sm-6",
-            'placeholder' => 'Optional',
+            'placeholder' => 'Opcional',
         ];
 
         $this->form[] = [
@@ -68,7 +68,7 @@ class EmailTemplatesController extends \crocodicstudio\crudbooster\controllers\C
             "type" => "email",
             "required" => false,
             "validation" => "email",
-            'placeholder' => 'Optional',
+            'placeholder' => 'Opcional',
         ];
     }
     //By the way, you can still create your own method in here... :)

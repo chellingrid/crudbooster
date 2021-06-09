@@ -82,7 +82,7 @@ $asset_already[] = $type;
                 @include('crudbooster::default.type_components.'.$type.'.component_detail')
             @else
                 <tr>
-                    <td>{{$form['label']}}</td>
+                    <td> {{cbLang($form['label'])}}</td>
                     <td>@include('crudbooster::default.type_components.'.$type.'.component_detail')</td>
                 </tr>
             @endif
@@ -92,7 +92,7 @@ $asset_already[] = $type;
                 @include('vendor.crudbooster.type_components.'.$type.'.component_detail')
             @else
                 <tr>
-                    <td>{{$form['label']}}</td>
+                    <td>{{cbLang($form['label'])}}</td>
                     <td>@include('vendor.crudbooster.type_components.'.$type.'.component_detail')</td>
                 </tr>
             @endif

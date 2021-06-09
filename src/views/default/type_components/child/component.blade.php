@@ -15,12 +15,12 @@ $name = str_slug($form['label'], '');
 
             <div id='panel-form-{{$name}}' class="panel panel-default">
                 <div class="panel-heading">
-                    <i class='fa fa-bars'></i> {{$form['label']}}
+                    <i class='fa fa-bars'></i> {{cbLang($form['label'])}}
                 </div>
                 <div class="panel-body">
 
                     <div class='row'>
-                        <div class='col-sm-10'>
+                        <div class='col-sm-12'>
                             <div class="panel panel-default">
                                 <div class="panel-heading"><i class="fa fa-pencil-square-o"></i> {{cbLang("text_form")}}</div>
                                 <div class="panel-body child-form-area">
@@ -28,7 +28,7 @@ $name = str_slug($form['label'], '');
                                         <?php $name_column = $name.$col['name'];?>
                                         <div class='form-group'>
                                             @if($col['type']!='hidden')
-                                                <label class="control-label col-sm-2">{{$col['label']}}
+                                                <label class="control-label col-sm-2">{{cbLang($col['label'])}}
                                                     @if(!empty($col['required'])) <span class="text-danger"
                                                                                         title="{{cbLang('this_field_is_required')}}">*</span> @endif
                                                 </label>
@@ -117,7 +117,7 @@ $name = str_slug($form['label'], '');
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                                                                 aria-hidden="true">&times;</span></button>
                                                                     <h4 class="modal-title"><i
-                                                                                class='fa fa-search'></i> {{cbLang('datamodal_browse_data')}} {{$col['label']}}
+                                                                                class='fa fa-search'></i> {{cbLang('datamodal_browse_data')}} | {{cbLang($col['label'])}}
                                                                     </h4>
                                                                 </div>
                                                                 <div class="modal-body">
@@ -135,6 +135,20 @@ $name = str_slug($form['label'], '');
                                                            class='form-control {{$col['required']?"required":""}}'
                                                             {{($col['readonly']===true)?"readonly":""}}
                                                     />
+                                                @elseif($col['type']=='date')
+                                                    <input id='{{$name_column}}' type='date'
+                                                           {{ ($col['min'])?"min='".$col['min']."'":"" }} {{ ($col['max'])?"max='$col[max]'":"" }} name='child-{{$col["name"]}}'
+                                                           class='form-control notfocus input_date {{$col['required']?"required":""}}'
+                                                            readonly
+                                                    />
+                                                @elseif($col['type']=='time')
+                                                <div class='bootstrap-timepicker'>
+                                                    <input id='{{$name_column}}' type='text'
+                                                           name='child-{{$col["name"]}}'
+                                                           class='form-control notfocus timepicker {{$col['required']?"required":""}}'
+                                                            readonly
+                                                    />
+                                                    </div>
                                                 @elseif($col['type']=='textarea')
                                                     <textarea id='{{$name_column}}' name='child-{{$col["name"]}}'
                                                               class='form-control {{$col['required']?"required":""}}' {{($col['readonly']===true)?"readonly":""}} ></textarea>
@@ -306,7 +320,7 @@ $name = str_slug($form['label'], '');
                                                             class='form-control select2 {{$col['required']?"required":""}}'
                                                             {{($col['readonly']===true)?"readonly":""}}
                                                     >
-                                                        <option value=''>{{cbLang('text_prefix_option')}} {{$col['label']}}</option>
+                                                        <option value=''>{{cbLang('text_prefix_option')}} {{cbLang($col['label'])}}</option>
                                                         <?php
                                                         if ($col['datatable']) {
                                                             $tableJoin = explode(',', $col['datatable'])[0];
@@ -317,7 +331,7 @@ $name = str_slug($form['label'], '');
                                                                 $data = CRUDBooster::get($tableJoin, $col['datatable_where'], "$titleField ASC");
                                                             }
                                                             foreach ($data as $d) {
-                                                                echo "<option value='$d->id'>".$d->$titleField."</option>";
+                                                                echo "<option value='$d->id'>".$d[0]->$titleField."</option>";
                                                             }
                                                         } else {
                                                             $data = $col['dataenum'];
@@ -384,7 +398,7 @@ $name = str_slug($form['label'], '');
                                             var currentRow = null;
 
                                             function resetForm{{$name}}() {
-                                                $('#panel-form-{{$name}}').find("input[type=text],input[type=number],select,textarea").val('');
+                                                $('#panel-form-{{$name}}').find("input[type=text],input[type=number],input[type=date],select,textarea").val('');
                                                 $('#panel-form-{{$name}}').find(".select2").val('').trigger('change');
                                             }
 
@@ -466,7 +480,7 @@ $name = str_slug($form['label'], '');
                                                 @elseif($c['type']=='upload')
                                                         @if($c['upload_type']=='image')
                                                     trRow += "<td class='{{$c['name']}}'>" +
-                                                    "<a data-lightbox='roadtrip' href='{{asset('/')}}" + $('#{{$name.$c["name"]}} .input-id').val() + "'><img data-label='" + $('#{{$name.$c["name"]}} .input-label').val() + "' src='{{asset('/')}}" + $('#{{$name.$c["name"]}} .input-id').val() + "' width='50px' height='50px'/></a>" +
+                                                    "<a data-lightbox='roadtrip' href='{{asset('/')}}" + $('#{{$name.$c["name"]}} .input-id').val() + "'><img data-label='" + input-label').val() + "' src='{{asset('/')}}" + $('#{{$name.$c["name"]}} .input-id').val() + "' width='50px' height='50px'/></a>" +
                                                     "<input type='hidden' name='{{$name}}-{{$c['name']}}[]' value='" + $('#{{$name.$c["name"]}} .input-id').val() + "'/>" +
                                                     "</td>";
                                                 @else
@@ -517,7 +531,7 @@ $name = str_slug($form['label'], '');
                                 <thead>
                                 <tr>
                                     @foreach($form['columns'] as $col)
-                                        <th>{{$col['label']}}</th>
+                                        <th>{{cbLang($col['label'])}}</th>
                                     @endforeach
                                     <th width="90px">{{cbLang('action_label')}}</th>
                                 </tr>

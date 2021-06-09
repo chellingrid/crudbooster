@@ -33,24 +33,7 @@
     <style type="text/css">
         .login-page, .register-page {
             background: {{ CRUDBooster::getSetting("login_background_color")?:'#dddddd'}} url('{{ CRUDBooster::getSetting("login_background_image")?asset(CRUDBooster::getSetting("login_background_image")):asset('vendor/crudbooster/assets/bg_blur3.jpg') }}');
-            color: {{ CRUDBooster::getSetting("login_font_color")?:'#ffffff' }}  !important;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-        }
-
-        .login-box, .register-box {
-            margin: 2% auto;
-        }
-
-        .login-box-body {
-            box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.8);
-            background: rgba(255, 255, 255, 0.9);
-            color: {{ CRUDBooster::getSetting("login_font_color")?:'#666666' }}  !important;
-        }
-
-        html, body {
-            overflow: hidden;
+            
         }
     </style>
 </head>
@@ -62,14 +45,14 @@
         <a href="{{url('/')}}">
             <img title='{!!(Session::get('appname') == 'CRUDBooster')?"<b>CRUD</b>Booster":CRUDBooster::getSetting('appname')!!}'
                  src='{{ CRUDBooster::getSetting("logo")?asset(CRUDBooster::getSetting('logo')):asset('vendor/crudbooster/assets/logo_crudbooster.png') }}'
-                 style='max-width: 100%;max-height:170px'/>
+                 style='max-width: 100%;max-height:100px'/>
         </a>
     </div><!-- /.login-logo -->
     <div class="login-box-body">
 
         @if ( Session::get('message') != '' )
-            <div class='alert alert-warning'>
-                {{ Session::get('message') }}
+            <div class='alert alert-{{ Session::get("message_type") }}'>
+                <?php echo Session::get('message') ?>
             </div>
         @endif
 

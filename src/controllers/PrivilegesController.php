@@ -37,7 +37,7 @@ class PrivilegesController extends CBController
         $this->form[] = ["label" => "Theme Color", "name" => "theme_color", 'required' => true];
 
         $this->alert[] = [
-            'message' => "You can use the helper <code>CRUDBooster::getMyPrivilegeId()</code> to get current user login privilege id, or <code>CRUDBooster::getMyPrivilegeName()</code> to get current user login privilege name",
+            'message' => "Você pode usar o helper <code>CRUDBooster::myPrivilegeId()</code> para pegar o id do perfil do usuário atual, ou <code>CRUDBooster::myPrivilegeName()</code> para pegar o nome do perfil",
             'type' => 'info',
         ];
     }
@@ -47,12 +47,12 @@ class PrivilegesController extends CBController
         $this->cbLoader();
 
         if (! CRUDBooster::isCreate() && $this->global_privilege == false) {
-            CRUDBooster::insertLog(cbLang('log_try_add', ['module' => CRUDBooster::getCurrentModule()->name]));
+            CRUDBooster::insertLog(cbLang('log_try_add', ['module' => cbLang(CRUDBooster::getCurrentModule()->name)]));
             CRUDBooster::redirect(CRUDBooster::adminPath(), cbLang("denied_access"));
         }
 
         $id = 0;
-        $data['page_title'] = "Add Data";
+        $data['page_title'] = cbLang('action_add_data');
         $data['moduls'] = DB::table("cms_moduls")->where('is_protected', 0)->whereNull('deleted_at')->select("cms_moduls.*", DB::raw("(select is_visible from cms_privileges_roles where id_cms_moduls = cms_moduls.id and id_cms_privileges = '$id') as is_visible"), DB::raw("(select is_create from cms_privileges_roles where id_cms_moduls  = cms_moduls.id and id_cms_privileges = '$id') as is_create"), DB::raw("(select is_read from cms_privileges_roles where id_cms_moduls    = cms_moduls.id and id_cms_privileges = '$id') as is_read"), DB::raw("(select is_edit from cms_privileges_roles where id_cms_moduls    = cms_moduls.id and id_cms_privileges = '$id') as is_edit"), DB::raw("(select is_delete from cms_privileges_roles where id_cms_moduls  = cms_moduls.id and id_cms_privileges = '$id') as is_delete"))->orderby("name", "asc")->get();
         $data['page_menu'] = Route::getCurrentRoute()->getActionName();
 
@@ -66,7 +66,7 @@ class PrivilegesController extends CBController
         if (! CRUDBooster::isCreate() && $this->global_privilege == false) {
             CRUDBooster::insertLog(cbLang('log_try_add_save', [
                 'name' => Request::input($this->title_field),
-                'module' => CRUDBooster::getCurrentModule()->name,
+                'module' => cbLang(CRUDBooster::getCurrentModule()->name),
             ]));
             CRUDBooster::redirect(CRUDBooster::adminPath(), cbLang("denied_access"));
         }
@@ -111,7 +111,7 @@ class PrivilegesController extends CBController
         if (! CRUDBooster::isRead() && $this->global_privilege == false) {
             CRUDBooster::insertLog(cbLang("log_try_edit", [
                 'name' => $row->{$this->title_field},
-                'module' => CRUDBooster::getCurrentModule()->name,
+                'module' => cbLang(CRUDBooster::getCurrentModule()->name),
             ]));
             CRUDBooster::redirect(CRUDBooster::adminPath(), cbLang('denied_access'));
         }
@@ -131,7 +131,7 @@ class PrivilegesController extends CBController
         $row = CRUDBooster::first($this->table, $id);
 
         if (! CRUDBooster::isUpdate() && $this->global_privilege == false) {
-            CRUDBooster::insertLog(cbLang("log_try_add", ['name' => $row->{$this->title_field}, 'module' => CRUDBooster::getCurrentModule()->name]));
+            CRUDBooster::insertLog(cbLang("log_try_add", ['name' => $row->{$this->title_field}, 'module' => cbLang(CRUDBooster::getCurrentModule()->name)]));
             CRUDBooster::redirect(CRUDBooster::adminPath(), cbLang('denied_access'));
         }
 
@@ -197,7 +197,7 @@ class PrivilegesController extends CBController
         if (! CRUDBooster::isDelete() && $this->global_privilege == false) {
             CRUDBooster::insertLog(cbLang("log_try_delete", [
                 'name' => $row->{$this->title_field},
-                'module' => CRUDBooster::getCurrentModule()->name,
+                'module' => cbLang(CRUDBooster::getCurrentModule()->name),
             ]));
             CRUDBooster::redirect(CRUDBooster::adminPath(), cbLang('denied_access'));
         }

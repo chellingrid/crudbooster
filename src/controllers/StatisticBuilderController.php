@@ -105,7 +105,7 @@ class StatisticBuilderController extends CBController
             CRUDBooster::redirect(CRUDBooster::adminPath(), cbLang('denied_access'));
         }
 
-        $page_title = 'Statistic Builder';
+        $page_title = cbLang('Statistic_Builder');
 
         return view('crudbooster::statistic_builder.builder', compact('page_title', 'id_cms_statistics'));
     }

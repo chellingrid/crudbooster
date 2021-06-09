@@ -1,6 +1,6 @@
 <div class='form-group form-datepicker {{$header_group_class}} {{ ($errors->first($name))?"has-error":"" }}' id='form-group-{{$name}}'
      style="{{@$form['style']}}">
-    <label class='control-label col-sm-2'>{{$form['label']}}
+    <label class='control-label col-sm-2'>{{cbLang($form['label'])}}
         @if($required)
             <span class='text-danger' title='{!! cbLang('this_field_is_required') !!}'>*</span>
         @endif
@@ -21,7 +21,7 @@
         <button class="btn btn-primary" onclick="showModal{{$name}}()" type="button"><i class='fa fa-search'></i> {{cbLang('datamodal_browse_data')}}</button>
                 <?php if(strlen($form['datamodal_module_path']) > 1){ ?>
                 <a class="btn btn-info" href="{{CRUDBooster::adminPath()}}/{{$form['datamodal_module_path']}}" target="_blank"><i
-                            class='fa fa-edit'></i> {{$form['label']}}</a>
+                            class='fa fa-edit'></i> {{cbLang($form['label'])}}</a>
                 <?php } ?>
       </span>
         </div><!-- /input-group -->
@@ -65,7 +65,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title"><i class='fa fa-search'></i> {{cbLang('datamodal_browse_data')}} | {{$form['label']}}</h4>
+                    <h4 class="modal-title"><i class='fa fa-search'></i> {{cbLang('datamodal_browse_data')}} | {{cbLang($form['label'])}}</h4>
                 </div>
                 <div class="modal-body">
                     <iframe id='iframe-modal-{{$name}}' style="border:0;height: 430px;width: 100%" src=""></iframe>

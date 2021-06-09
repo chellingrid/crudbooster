@@ -22,10 +22,10 @@
     @endpush
 
     <ul class="nav nav-tabs">
-        <li role="presentation"><a href="{{Route('ModulsControllerGetStep1')."/".$id}}"><i class='fa fa-info'></i> Step 1 - Module Information</a></li>
-        <li role="presentation"><a href="{{Route('ModulsControllerGetStep2')."/".$id}}"><i class='fa fa-table'></i> Step 2 - Table Display</a></li>
-        <li role="presentation" class="active"><a href="{{Route('ModulsControllerGetStep3')."/".$id}}"><i class='fa fa-plus-square-o'></i> Step 3 - Form Display</a></li>
-        <li role="presentation"><a href="{{Route('ModulsControllerGetStep4')."/".$id}}"><i class='fa fa-wrench'></i> Step 4 - Configuration</a></li>
+        <li role="presentation"><a href="{{Route('ModulsControllerGetStep1')."/".$id}}"><i class='fa fa-info'></i> Passo 1 - Informação de Módulo</a></li>
+        <li role="presentation"><a href="{{Route('ModulsControllerGetStep2')."/".$id}}"><i class='fa fa-table'></i> Passo 2 - Exibição de Tabela</a></li>
+        <li role="presentation" class="active"><a href="{{Route('ModulsControllerGetStep3')."/".$id}}"><i class='fa fa-plus-square-o'></i> Passo 3 - Exibição de Formulário</a></li>
+        <li role="presentation"><a href="{{Route('ModulsControllerGetStep4')."/".$id}}"><i class='fa fa-wrench'></i> Passo 4 - Configuração</a></li>
     </ul>
     @push('head')
         <style>
@@ -426,48 +426,56 @@
 
     <div class="box box-default">
         <div class="box-header with-border">
-            <h3 class="box-title">Form Display</h3>
+            <h3 class="box-title">{{cbLang('Form Display')}}</h3>
         </div>
         <div class="box-body">
-            <form method="post" autocomplete="off" action="{{Route('ModulsControllerPostStep4')}}">
-                <input type="hidden" name="_token" value="{{csrf_token()}}">
-                <input type="hidden" name="id" value="{{$id}}">
-
-                <table class='table-form table table-striped'>
-                    <thead>
-                    <tr>
-                        <th>Label</th>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th>Validation</th>
-                        <th width="90px">Width</th>
-                        <th width="100px">Options</th>
-                        <th width="180px">Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
+		<form method="post" action="{{Route('ModulsControllerPostStep4')}}">
+			<input type="hidden" name="_token" value="{{csrf_token()}}"> <input
+				type="hidden" name="id" value="{{$id}}">
+			<div class="table-responsive">
+				<table class='table-form table table-striped'>
+					<thead>
+						<tr>
+							<th>{{cbLang('Label')}}</th>
+							<th>{{cbLang('Name')}}</th>
+							<th>{{cbLang('Type')}}</th>
+							<th>{{cbLang('Validation')}}</th>
+							<th width="90px">Width</th>
+							<th width="100px">{{cbLang('options_label')}}</th>
+							<th width="180px">{{cbLang('action_label')}}</th>
+						</tr>
+					</thead>
+					<tbody>
                     <?php $index = 0;?>
                     @foreach($cb_form as $form)
                         <tr>
-                            <td><input type='text' value='{{$form["label"]}}' placeholder="Input field label" onclick='showColumnSuggest(this)'
-                                       onkeyup="showColumnSuggestLike(this)" class='form-control labels' name='label[]'/></td>
-                            <td><input type='text' value='{{$form["name"]}}' placeholder="Input field name" onclick='showNameSuggest(this)'
-                                       onkeyup="showNameSuggestLike(this)" class='form-control name' name='name[]'/></td>
-                            <td><input type='text' value='{{$form["type"]?:"text"}}' placeholder="Input field type" onclick='showTypeSuggest(this)'
-                                       onkeyup="showTypeSuggestLike(this)" class='form-control type' name='type[]'/></td>
-                            <td><input type='text' value='{{$form["validation"]}}' class='form-control validation' onclick="showValidationSuggest(this)"
-                                       onkeyup="showValidationSuggestLike(this)" name='validation[]' value='required' placeholder='Enter Laravel Validation'/>
-                            </td>
-                            <td>
-                                <select class='form-control width' name='width[]'>
-                                    @for($i=10;$i>=1;$i--)
-                                        <option {{ ($form['width'] == "col-sm-$i")?"selected":"" }} value='col-sm-{{$i}}'>{{$i}}</option>
-                                    @endfor
-                                </select>
-                            </td>
-                            <td>
-                                <a class='btn btn-primary btn-options' href='javascript:;'><i class='fa fa-cog'></i> Options</a>
-                                <div class='option_area' style="display: none">
+							<td><input type='text' value='{{$form["label"]}}'
+								placeholder="{{cbLang('Label')}}"
+								onclick='showColumnSuggest(this)'
+								onkeyup="showColumnSuggestLike(this)"
+								class='form-control labels' name='label[]' /></td>
+							<td><input type='text' value='{{$form["name"]}}'
+								placeholder="{{cbLang('Name')}}" onclick='showNameSuggest(this)'
+								onkeyup="showNameSuggestLike(this)" class='form-control name'
+								name='name[]' /></td>
+							<td><input type='text' value='{{$form["type"]?:"text"}}'
+								placeholder="{{cbLang('Type')}}" onclick='showTypeSuggest(this)'
+								onkeyup="showTypeSuggestLike(this)" class='form-control type'
+								name='type[]' /></td>
+							<td><input type='text' value='{{$form["validation"]}}'
+								class='form-control validation'
+								onclick="showValidationSuggest(this)"
+								onkeyup="showValidationSuggestLike(this)" name='validation[]'
+								value='required' placeholder='Validação Laravel' /></td>
+							<td><select class='form-control width' name='width[]'>
+									@for($i=10;$i>=1;$i--)
+									<option {{ ($form['width'] ==
+										"col-sm-$i")?"selected":"" }} value='col-sm-{{$i}}'>{{$i}}</option>
+									@endfor
+							</select></td>
+							<td><a class='btn btn-primary btn-options' href='javascript:;'><i
+									class='fa fa-cog'></i> {{cbLang('options_label')}}</a>
+								<div class='option_area' style="display: none">
                                     <?php
 
                                     $type = $form["type"] ?: "text";
@@ -480,8 +488,7 @@
 
                                     @if($types->alert)
                                         <div class="alert alert-warning">
-                                            {!! $types->alert !!}
-                                        </div>
+										{!! $types->alert !!}</div>
                                     @endif
 
                                     <?php
@@ -493,28 +500,29 @@
                                     if($val->type && $val->type == 'radio'):
                                     ?>
                                     <div class="form-group">
-                                        <label>{{$key}}</label>
-                                        @foreach($val->enum as $enum)
-                                            <input type="radio" name="option[{{$index}}][{{$key}}]"
-                                                   {{ ($enum == $value)?"checked":"" }} value="{{$enum}}"> {{$enum}}
-                                        @endforeach
+										<label>{{$key}}</label> @foreach($val->enum as $enum) <input
+											type="radio" name="option[{{$index}}][{{$key}}]" {{ ($enum==
+											$value)?"checked":"" }} value="{{$enum}}"> {{$enum}}
+										@endforeach
 
-                                    </div>
+									</div>
 
                                     <?php else:?>
 
                                     <div class="form-group">
-                                        <label>{{$key}}</label>
-                                        <input type="text" name="option[{{$index}}][{{$key}}]" placeholder="{{$val->placeholder}}" value="{{$value}}"
-                                               class="form-control">
-                                    </div>
+										<label>{{$key}}</label> <input type="text"
+											name="option[{{$index}}][{{$key}}]"
+											placeholder="{{$val->placeholder}}" value="{{$value}}"
+											class="form-control">
+									</div>
                                     <?php endif;?>
                                     <?php else:?>
 
                                     <div class="form-group">
-                                        <label>{{$key}}</label>
-                                        <input type="text" name="option[{{$index}}][{{$key}}]" placeholder="{{$val}}" value="{{$value}}" class="form-control">
-                                    </div>
+										<label>{{$key}}</label> <input type="text"
+											name="option[{{$index}}][{{$key}}]" placeholder="{{$val}}"
+											value="{{$value}}" class="form-control">
+									</div>
 
                                     <?php endif;?>
                                     <?php endforeach; endif;?>
@@ -527,9 +535,10 @@
                                     @$value = $form[$key];
                                     ?>
                                     <div class="form-group">
-                                        <label>{{$key}}</label>
-                                        <input type="text" name="option[{{$index}}][{{$key}}]" placeholder="{{$val}}" value="{{$value}}" class="form-control">
-                                    </div>
+										<label>{{$key}}</label> <input type="text"
+											name="option[{{$index}}][{{$key}}]" placeholder="{{$val}}"
+											value="{{$value}}" class="form-control">
+									</div>
                                     <?php endforeach; endif;?>
 
                                     <?php
@@ -539,70 +548,73 @@
 
                                     ?>
                                     <div class="form-group">
-                                        <label>{{$key}}</label>
-                                        @if(is_object($val) && property_exists($val, 'type') && $val->type == 'textarea')
-                                            <textarea type="text" name="option[{{$index}}][{{$key}}]" placeholder="{{$val->placeholder}}"
-                                                      class="form-control">{{$value}}</textarea>
-                                        @else
-                                            <input type="text" name="option[{{$index}}][{{$key}}]" placeholder="{{$val}}" value="{{$value}}"
-                                                   class="form-control">
-                                        @endif
-                                    </div>
+										<label>{{$key}}</label> @if(is_object($val) &&
+										property_exists($val, 'type') && $val->type == 'textarea')
+										<textarea type="text" name="option[{{$index}}][{{$key}}]"
+											placeholder="{{$val->placeholder}}" class="form-control">{{$value}}</textarea>
+										@else <input type="text" name="option[{{$index}}][{{$key}}]"
+											placeholder="{{$val}}" value="{{$value}}"
+											class="form-control"> @endif
+									</div>
                                     <?php endforeach; endif;?>
 
 
                                     <?php endif;?>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="javascript:void(0)" class="btn btn-info btn-plus"><i class='fa fa-plus'></i></a>
-                                <a href="javascript:void(0)" class="btn btn-danger btn-delete"><i class='fa fa-trash'></i></a>
-                                <a href="javascript:void(0)" class="btn btn-success btn-up"><i class='fa fa-arrow-up'></i></a>
-                                <a href="javascript:void(0)" class="btn btn-success btn-down"><i class='fa fa-arrow-down'></i></a>
-                            </td>
-                        </tr>
+                                </div></td>
+							<td><a href="javascript:void(0)" class="btn btn-info btn-plus"><i
+									class='fa fa-plus'></i></a> <a href="javascript:void(0)"
+								class="btn btn-danger btn-delete"><i class='fa fa-trash'></i></a>
+								<a href="javascript:void(0)" class="btn btn-success btn-up"><i
+									class='fa fa-arrow-up'></i></a> <a href="javascript:void(0)"
+								class="btn btn-success btn-down"><i class='fa fa-arrow-down'></i></a>
+							</td>
+						</tr>
                         <?php $index++;?>
                     @endforeach
 
                     <tr id='tr-sample' style="display: none">
-                        <td><input type='text' placeholder="Input field label" onclick='showColumnSuggest(this)' onkeyup="showColumnSuggestLike(this)"
-                                   class='form-control labels' name='label[]'/></td>
-                        <td><input type='text' placeholder="Input field name" onclick='showNameSuggest(this)' onkeyup="showNameSuggestLike(this)"
-                                   class='form-control name' name='name[]'/></td>
-                        <td><input type='text' placeholder="Input field type" onclick='showTypeSuggest(this)' onkeyup="showTypeSuggestLike(this)"
-                                   class='form-control type' name='type[]'/></td>
-                        <td><input type='text' class='form-control validation' onclick="showValidationSuggest(this)" onkeyup="showValidationSuggestLike(this)"
-                                   name='validation[]' value='required' placeholder='Enter Laravel Validation'/></td>
-                        <td>
-                            <select class='form-control width' name='width[]'>
-                                @for($i=10;$i>=1;$i--)
-                                    <option {{ ($i==9)?"selected":"" }} value='col-sm-{{$i}}'>{{$i}}</option>
-                                @endfor
-                            </select>
-                        </td>
-                        <td>
-                            <a class='btn btn-primary btn-options' href='#'><i class='fa fa-cog'></i> Options</a>
-                            <div class='option_area' style="display: none">
+							<td><input type='text' placeholder="Input field label"
+								onclick='showColumnSuggest(this)'
+								onkeyup="showColumnSuggestLike(this)"
+								class='form-control labels' name='label[]' /></td>
+							<td><input type='text' placeholder="Input field name"
+								onclick='showNameSuggest(this)'
+								onkeyup="showNameSuggestLike(this)" class='form-control name'
+								name='name[]' /></td>
+							<td><input type='text' placeholder="Input field type"
+								onclick='showTypeSuggest(this)'
+								onkeyup="showTypeSuggestLike(this)" class='form-control type'
+								name='type[]' /></td>
+							<td><input type='text' class='form-control validation'
+								onclick="showValidationSuggest(this)"
+								onkeyup="showValidationSuggestLike(this)" name='validation[]'
+								value='required' placeholder='Enter Laravel Validation' /></td>
+							<td><select class='form-control width' name='width[]'>
+									@for($i=10;$i>=1;$i--)
+									<option {{ ($i==9)? "selected":"" }} value='col-sm-{{$i}}'>{{$i}}</option>
+									@endfor
+							</select></td>
+							<td><a class='btn btn-primary btn-options' href='#'><i
+									class='fa fa-cog'></i> Options</a>
+								<div class='option_area' style="display: none"></div></td>
+							<td><a href="javascript:void(0)" class="btn btn-info btn-plus"><i
+									class='fa fa-plus'></i></a> <a href="javascript:void(0)"
+								class="btn btn-danger btn-delete"><i class='fa fa-trash'></i></a>
+								<a href="javascript:void(0)" class="btn btn-success btn-up"><i
+									class='fa fa-arrow-up'></i></a> <a href="javascript:void(0)"
+								class="btn btn-success btn-down"><i class='fa fa-arrow-down'></i></a>
+							</td>
+						</tr>
 
-                            </div>
-                        </td>
-                        <td>
-                            <a href="javascript:void(0)" class="btn btn-info btn-plus"><i class='fa fa-plus'></i></a>
-                            <a href="javascript:void(0)" class="btn btn-danger btn-delete"><i class='fa fa-trash'></i></a>
-                            <a href="javascript:void(0)" class="btn btn-success btn-up"><i class='fa fa-arrow-up'></i></a>
-                            <a href="javascript:void(0)" class="btn btn-success btn-down"><i class='fa fa-arrow-down'></i></a>
-                        </td>
-                    </tr>
 
-
-                    </tbody>
-                </table>
-
-        </div>
+					</tbody>
+				</table>
+			</div>
+	</div>
         <div class="box-footer">
             <div align="right">
-                <button type="button" onclick="location.href='{{CRUDBooster::mainpath('step2').'/'.$id}}'" class="btn btn-default">&laquo; Back</button>
-                <input type="submit" class="btn btn-primary" value="Step 4 &raquo;">
+                <button type="button" onclick="location.href='{{CRUDBooster::mainpath('step2').'/'.$id}}'" class="btn btn-default">&laquo; {{cbLang('button_back')}}</button>
+                <input type="submit" class="btn btn-primary" value="Passo 4 &raquo;">
             </div>
         </div>
         </form>

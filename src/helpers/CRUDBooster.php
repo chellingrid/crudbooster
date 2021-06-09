@@ -163,8 +163,8 @@ class CRUDBooster
             }
         }
 
-        if (DB::table($table)->insert($data)) {
-            return $data['id'];
+        if ($id = DB::table($table)->insertGetId($data)) {
+            return $id;
         } else {
             return false;
         }
@@ -943,7 +943,7 @@ class CRUDBooster
 
     public static function findPrimaryKey($table)
     {
-        if(!$table)
+        if(!$table || strpos($table, "view") == 0 )//se é uma view
         {
             return 'id';
         }

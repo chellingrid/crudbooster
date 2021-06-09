@@ -88,7 +88,7 @@ class MenusController extends CBController
 	              });
 
 				$('input[name=type]').click(function() {
-					var default_placeholder_path = 'NameController@methodName';
+					var default_placeholder_path = 'NomeController@NomeMétodo';
 					var n = $(this).val();
 					var isCheck = $(this).prop('checked');
 					console.log('Click the module type '+n);
@@ -112,7 +112,7 @@ class MenusController extends CBController
 						$('#form-group-statistic_slug label .text-danger').remove();
 						$('#form-group-statistic_slug label').append('<span class=\"text-danger\" title=\"".cbLang('this_field_is_required')."\">*</span>');
 					}else if (n == 'URL') {
-						$('input[name=path]').attr('placeholder','Please enter your URL');
+						$('input[name=path]').attr('placeholder','Insira a URL');
 
 						$('#path').prop('required',true);
 						$('#form-group-path label .text-danger').remove();
@@ -121,7 +121,7 @@ class MenusController extends CBController
 						$('#form-group-path').show();
 						$('#form-group-module_slug,#form-group-statistic_slug').hide();
 					}else if (n == 'Route') {
-						$('input[name=path]').attr('placeholder','Please enter the Route');
+						$('input[name=path]').attr('placeholder','Insira Route');
 
 						$('#path').prop('required',true);
 						$('#form-group-path label .text-danger').remove();
@@ -195,8 +195,8 @@ class MenusController extends CBController
             "label" => "Value",
             "name" => "path",
             "type" => "text",
-            'help' => 'If you select type controller, you can fill this field with controller name, you may include the method also',
-            'placeholder' => 'NameController or NameController@methodName',
+            'help' => 'Se você selecionar o tipo de controlador, você pode preencher este campo com o nome do controlador, também pode incluir o método também',
+            'placeholder' => 'NomeController ou NomeController@NomeMétodo',
             "style" => "display:none",
         ];
 
@@ -241,7 +241,7 @@ class MenusController extends CBController
 
         $module = CRUDBooster::getCurrentModule();
         if (! CRUDBooster::isView() && $this->global_privilege == false) {
-            CRUDBooster::insertLog(cbLang('log_try_view', ['module' => $module->name]));
+            CRUDBooster::insertLog(cbLang('log_try_view', ['module' => cbLang($module->name)]));
             CRUDBooster::redirect(CRUDBooster::adminPath(), cbLang('denied_access'));
         }
 
@@ -270,7 +270,7 @@ class MenusController extends CBController
 
         $return_url = Request::fullUrl();
 
-        $page_title = 'Menu Management';
+        $page_title = cbLang('Menu_Management');
 
         return view('crudbooster::menus_management', compact('menu_active', 'menu_inactive', 'privileges', 'id_cms_privileges', 'return_url', 'page_title'));
     }

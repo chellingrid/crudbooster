@@ -105,7 +105,7 @@
                                 $build_query = (Request::all()) ? $build_query : "";
                                 ?>
                                 <button type='button' onclick='location.href="{{ CRUDBooster::mainpath().$build_query}}"'
-                                        title="{{cbLang('button_reset')}}" class='btn btn-sm btn-warning'><i class='fa fa-ban'></i></button>
+                                        title="{{cbLang('button_reset')}}" class='btn btn-sm btn-danger'><i class='fa fa-ban'></i></button>
                             @endif
                             <button type='submit' class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
                         </div>

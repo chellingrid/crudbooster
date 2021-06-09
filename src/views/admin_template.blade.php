@@ -105,7 +105,7 @@
             @if($module)
                 <h1>
                     <!--Now you can define $page_icon alongside $page_tite for custom forms to follow CRUDBooster theme style -->
-                    <i class='{!! ($page_icon)?:$module->icon !!}'></i> {!! ucwords(($page_title)?:$module->name) !!} &nbsp;&nbsp;
+                    <i class='{!! ($page_icon)?:$module->icon !!}'></i> {!! ucwords(($page_title)?:cbLang($module->name)) !!} &nbsp;&nbsp;
 
                     <!--START BUTTON -->
 
@@ -161,7 +161,7 @@
 
                 <ol class="breadcrumb">
                     <li><a href="{{CRUDBooster::adminPath()}}"><i class="fa fa-dashboard"></i> {{ cbLang('home') }}</a></li>
-                    <li class="active">{{$module->name}}</li>
+                    <li class="active">{{cbLang($module->name)}}</li>
                 </ol>
             @else
                 <h1>{{Session::get('appname')}}
@@ -187,7 +187,7 @@
                 <div class='alert alert-{{ Session::get("message_type") }}'>
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h4><i class="icon fa fa-info"></i> {{ cbLang("alert_".Session::get("message_type")) }}</h4>
-                    {!!Session::get('message')!!}
+                    <?php echo Session::get('message') ?>
                 </div>
             @endif
 

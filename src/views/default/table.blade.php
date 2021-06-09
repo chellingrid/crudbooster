@@ -49,11 +49,13 @@
 <form id='form-table' method='post' action='{{CRUDBooster::mainpath("action-selected")}}'>
     <input type='hidden' name='button_name' value=''/>
     <input type='hidden' name='_token' value='{{csrf_token()}}'/>
-    <table id='table_dashboard' class="table table-hover table-striped table-bordered">
-        <thead>
-        <tr class="active">
+	<div class="table-responsive">
+		<table id='table_dashboard'
+			class="table table-hover table-striped table-bordered">
+			<thead>
+				<tr class="active">
             <?php if($button_bulk_action):?>
-            <th width='3%'><input type='checkbox' id='checkall'/></th>
+            <th width='3%'><input type='checkbox' id='checkall' /></th>
             <?php endif;?>
             <?php if($show_numbering):?>
             <th width="1%">{{ cbLang('no') }}</th>
@@ -63,7 +65,7 @@
                 if ($col['visible'] === FALSE) continue;
 
                 $sort_column = Request::get('filter_column');
-                $colname = $col['label'];
+                $colname = cbLang($col['label']);
                 $name = $col['name'];
                 $field = $col['field_with'];
                 $width = (isset($col['width'])) ?$col['width']: "auto";
@@ -96,25 +98,31 @@
 
             @if($button_table_action)
                 @if(CRUDBooster::isUpdate() || CRUDBooster::isDelete() || CRUDBooster::isRead())
-                    <th width='{{ isset($button_action_width)? $button_action_width :"auto"}}' style="text-align:right">{{cbLang("action_label")}}</th>
-                @endif
-            @endif
-        </tr>
-        </thead>
-        <tbody>
-        @if(count($result)==0)
-            <tr class='warning'>
+                    <th
+						width='{{ isset($button_action_width)? $button_action_width :"auto"}}'
+						style="text-align: right">{{cbLang("action_label")}}</th> @endif
+					@endif
+				</tr>
+			</thead>
+			<tbody>
+				@if(count($result)==0)
+				<tr class='warning'>
                 <?php if($button_bulk_action && $show_numbering):?>
                 <td colspan='{{count($columns)+3}}' align="center">
                 <?php elseif( ($button_bulk_action && ! $show_numbering) || (! $button_bulk_action && $show_numbering) ):?>
-                <td colspan='{{count($columns)+2}}' align="center">
+                
+					
+					<td colspan='{{count($columns)+2}}' align="center">
                 <?php else:?>
-                <td colspan='{{count($columns)+1}}' align="center">
+                
+					
+					<td colspan='{{count($columns)+1}}' align="center">
                     <?php endif;?>
 
-                    <i class='fa fa-search'></i> {{cbLang("table_data_not_found")}}
-                </td>
-            </tr>
+                    <i class='fa fa-search'></i>
+						{{cbLang("table_data_not_found")}}
+					</td>
+				</tr>
         @endif
 
         @foreach($html_contents['html'] as $i=>$hc)
@@ -138,18 +146,15 @@
                 <?php echo "<tr class='$tr_color'>";?>
             @else
                 <tr>
-                    @endif
-
-                    @foreach($hc as $j=>$h)
-                        <td {{ $columns[$j]['style'] or ''}}>{!! $h !!}</td>
-                    @endforeach
-                </tr>
-                @endforeach
-        </tbody>
+					@endif @foreach($hc as $j=>$h)
+					<td{{ $columns[$j]['style'] or ''}}>{!! $h !!}</td> @endforeach
+				</tr>
+				@endforeach
+			</tbody>
 
 
-        <tfoot>
-        <tr>
+			<tfoot>
+				<tr>
             <?php if($button_bulk_action):?>
             <th>&nbsp;</th>
             <?php endif;?>
@@ -161,7 +166,7 @@
             <?php
             foreach ($columns as $col) {
                 if ($col['visible'] === FALSE) continue;
-                $colname = $col['label'];
+                $colname = cbLang($col['label']);
                 $width = (isset($col['width'])) ?$col['width']: "auto";
 		$style = (isset($col['style'])) ? $col['style']: "";
                 echo "<th width='$width' $style>$colname</th>";
@@ -170,13 +175,11 @@
 
             @if($button_table_action)
                 @if(CRUDBooster::isUpdate() || CRUDBooster::isDelete() || CRUDBooster::isRead())
-                    <th> -</th>
-                @endif
-            @endif
-        </tr>
-        </tfoot>
-    </table>
-
+                    <th>-</th> @endif @endif
+				</tr>
+			</tfoot>
+		</table>
+	</div>
 </form><!--END FORM TABLE-->
 
 <div class="col-md-8">{!! urldecode(str_replace("/?","?",$result->appends(Request::all())->render())) !!}</div>
@@ -319,7 +322,7 @@ $total = $result->total();
                                 <div class='row-filter-combo row'>
 
                                     <div class="col-sm-2">
-                                        <strong>{{$col['label']}}</strong>
+                                        <strong>{{cbLang($col['label'])}}</strong>
                                     </div>
 
                                     <div class='col-sm-3'>

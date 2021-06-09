@@ -132,8 +132,8 @@
 
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <strong>Menu Order (Active)</strong> <span id='menu-saved-info' style="display:none" class='pull-right text-success'><i
-                                class='fa fa-check'></i> Menu Saved !</span>
+                    <strong>Menu Ordem (Ativo)</strong> <span id='menu-saved-info' style="display:none" class='pull-right text-success'><i
+                                class='fa fa-check'></i> Menu Salvo !</span>
                 </div>
                 <div class="panel-body clearfix">
                     <ul class='draggable-menu draggable-menu-active'>
@@ -184,14 +184,14 @@
                         @endforeach
                     </ul>
                     @if(count($menu_active)==0)
-                        <div align="center">Active menu is empty, please add new menu</div>
+                        <div align="center">Vazio</div>
                     @endif
                 </div>
             </div>
 
             <div class="panel panel-danger">
                 <div class="panel-heading">
-                    <strong>Menu Order (Inactive)</strong>
+                    <strong>Menu Ordem (Inativo)</strong>
                 </div>
                 <div class="panel-body clearfix">
                     <ul class='draggable-menu draggable-menu-inactive'>
@@ -220,7 +220,7 @@
                         @endforeach
                     </ul>
                     @if(count($menu_inactive)==0)
-                        <div align="center" id='inactive_text' class='text-muted'>Inactive menu is empty</div>
+                        <div align="center" id='inactive_text' class='text-muted'>Vazio</div>
                     @endif
                 </div>
             </div>
@@ -230,7 +230,7 @@
         <div class="col-sm-7">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    Add Menu
+                    Adicionar Menu
                 </div>
                 <div class="panel-body">
                     <form class='form-horizontal' method='post' id="form" enctype="multipart/form-data" action='{{CRUDBooster::mainpath("add-save")}}'>

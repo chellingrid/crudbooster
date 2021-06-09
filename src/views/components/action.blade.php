@@ -31,8 +31,8 @@
         ';
     }
 
-    $label = $a['label'];
-    $title = ($a['title']) ?: $a['label'];
+    $label = cbLang($a['label']);
+    $title = cbLang(($a['title']) ?: $a['label']);
     $icon = $a['icon'];
     $color = $a['color'] ?: 'primary';
     $confirmation = $a['confirmation'];
@@ -74,7 +74,7 @@
 
     @if(CRUDBooster::isDelete() && $button_delete)
         <?php $url = CRUDBooster::mainpath("delete/".$row->$pk);?>
-        <a class='btn btn-xs btn-warning btn-delete' title='{{cbLang("action_delete_data")}}' href='javascript:;'
+        <a class='btn btn-xs btn-danger btn-delete' title='{{cbLang("action_delete_data")}}' href='javascript:;'
            onclick='{{CRUDBooster::deleteConfirm($url)}}'>{{cbLang("action_delete_data")}}</a>
     @endif
 @elseif($button_action_style == 'button_icon_text')
@@ -94,7 +94,7 @@
 
     @if(CRUDBooster::isDelete() && $button_delete)
         <?php $url = CRUDBooster::mainpath("delete/".$row->$pk);?>
-        <a class='btn btn-xs btn-warning btn-delete' title='{{cbLang("action_delete_data")}}' href='javascript:;'
+        <a class='btn btn-xs btn-danger btn-delete' title='{{cbLang("action_delete_data")}}' href='javascript:;'
            onclick='{{CRUDBooster::deleteConfirm($url)}}'><i class='fa fa-trash'></i> {{cbLang("action_delete_data")}}</a>
     @endif
 
@@ -170,7 +170,7 @@
 
     @if(CRUDBooster::isDelete() && $button_delete)
         <?php $url = CRUDBooster::mainpath("delete/".$row->$pk);?>
-        <a class='btn btn-xs btn-warning btn-delete' title='{{cbLang("action_delete_data")}}' href='javascript:;'
+        <a class='btn btn-xs btn-danger btn-delete' title='{{cbLang("action_delete_data")}}' href='javascript:;'
            onclick='{{CRUDBooster::deleteConfirm($url)}}'><i class='fa fa-trash'></i></a>
     @endif
 

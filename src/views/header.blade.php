@@ -13,9 +13,13 @@
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-
+				<li class="help-menu">
+					<a href="{{route('AdminControllerGetHelp')}}" title="{{cbLang('Help')}}" aria-expanded="false">
+                        <i id='icon_help' class="fa fa-question-circle"></i>
+                    </a>
+				</li>
                 <li class="dropdown notifications-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" title='Notifications' aria-expanded="false">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="{{cbLang('Notifications')}}" aria-expanded="false">
                         <i id='icon_notification' class="fa fa-bell-o"></i>
                         <span id='notification_count' class="label label-danger" style="display:none">0</span>
                     </a>
@@ -58,7 +62,9 @@
                             <p>
                                 {{ CRUDBooster::myName() }}
                                 <small>{{ CRUDBooster::myPrivilegeName() }}</small>
-                                <small><em><?php echo date('d F Y')?></em></small>
+                                <small><em><?php  setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+                                echo strftime('%A, %d de %B de %Y', strtotime('today'));
+                                ?></em></small>
                             </p>
                         </li>
 

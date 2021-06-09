@@ -1,6 +1,6 @@
 <div class='bootstrap-timepicker'>
     <div class='form-group {{$header_group_class}} {{ ($errors->first($name))?"has-error":"" }}' id='form-group-{{$name}}' style="{{@$form['style']}}">
-        <label class='control-label col-sm-2'>{{$form['label']}}
+        <label class='control-label col-sm-2'>{{cbLang($form['label'])}}
             @if($required)
                 <span class='text-danger' title='{!! cbLang('this_field_is_required') !!}'>*</span>
             @endif
@@ -11,7 +11,7 @@
                 @if(!$disabled)
                     <span class="input-group-addon"><i class='fa fa-clock-o'></i></span>
                 @endif
-                <input type='text' title="{{$form['label']}}"
+                <input type='text' title="{{cbLang($form['label'])}}"
                        {{$required}} {{$readonly}} {!!$placeholder!!} {{$disabled}} class='form-control notfocus timepicker' name="{{$name}}" id="{{$name}}"
                        readonly value='{{$value}}'/>
             </div>

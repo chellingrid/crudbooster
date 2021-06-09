@@ -2,15 +2,15 @@
 @section("content")
 
     <ul class="nav nav-tabs">
-        <li role="presentation"><a href="{{Route('ModulsControllerGetStep1')."/".$id}}"><i class='fa fa-info'></i> Step 1 - Module Information</a></li>
-        <li role="presentation"><a href="{{Route('ModulsControllerGetStep2')."/".$id}}"><i class='fa fa-table'></i> Step 2 - Table Display</a></li>
-        <li role="presentation"><a href="{{Route('ModulsControllerGetStep3')."/".$id}}"><i class='fa fa-plus-square-o'></i> Step 3 - Form Display</a></li>
-        <li role="presentation" class="active"><a href="{{Route('ModulsControllerGetStep4')."/".$id}}"><i class='fa fa-wrench'></i> Step 4 - Configuration</a></li>
+        <li role="presentation"><a href="{{Route('ModulsControllerGetStep1')."/".$id}}"><i class='fa fa-info'></i> Passo 1 - Informação de Módulo</a></li>
+        <li role="presentation"><a href="{{Route('ModulsControllerGetStep2')."/".$id}}"><i class='fa fa-table'></i> Passo 2 - Exibição de Tabela</a></li>
+        <li role="presentation"><a href="{{Route('ModulsControllerGetStep3')."/".$id}}"><i class='fa fa-plus-square-o'></i> Passo 3 - Exibição de Formulário</a></li>
+        <li role="presentation" class="active"><a href="{{Route('ModulsControllerGetStep4')."/".$id}}"><i class='fa fa-wrench'></i> Passo 4 - Configuração</a></li>
     </ul>
 
     <div class="box box-default">
         <div class="box-header">
-            <h1 class="box-title">Configuration</h1>
+            <h1 class="box-title">{{cbLang('Configuration')}}</h1>
         </div>
         <form method='post' action='{{Route('ModulsControllerPostStepFinish')}}'>
             {{csrf_field()}}
@@ -20,14 +20,14 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label>Title Field Candidate</label>
+                            <label>{{cbLang('Title')}}</label>
                             <input type="text" name="title_field" value="{{$cb_title_field}}" class='form-control'>
                         </div>
                     </div>
 
                     <div class="col-sm-5">
                         <div class="form-group">
-                            <label>Limit Data</label>
+                            <label>{{cbLang('Limit Data')}}</label>
                             <input type="number" name="limit" value="{{$cb_limit}}" class='form-control'>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                             }
                             ?>
                             <input type="text" name="orderby" value="{{$orderby}}" class='form-control'>
-                            <div class="help-block">E.g : column_name,desc</div>
+                            <div class="help-block">Ex: nome_coluna,desc</div>
                         </div>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
 
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label>Show Button Table Action</label>
+                                    <label><i>{{cbLang('show_button_text')}}</i> {{cbLang('Table Action')}}</label>
                                     <label class='radio-inline'>
                                         <input {{($cb_button_table_action)?"checked":""}} type='radio' name='button_table_action' value='true'/> TRUE
                                     </label>
@@ -82,7 +82,7 @@
 
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label>Show Bulk Action Button</label>
+                                    <label><i>{{cbLang('show_button_text')}}</i> {{cbLang('Bulk Action')}}</label>
                                     <label class='radio-inline'>
                                         <input {{($cb_button_bulk_action)?"checked":""}} type='radio' name='button_bulk_action' value='true'/> TRUE
                                     </label>
@@ -94,7 +94,7 @@
 
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label>Button Action Style</label>
+                                    <label>{{cbLang('Button Style')}}</label>
                                     <label class='radio-inline'>
                                         <input {{($cb_button_action_style=='button_icon')?"checked":""}} type='radio' name='button_action_style'
                                                value='button_icon'/> Icon
@@ -123,7 +123,7 @@
 
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label>Show Button Add</label>
+                                    <label><i>{{cbLang('show_button_text')}}</i> {{cbLang('Add')}}</label>
                                     <label class='radio-inline'>
                                         <input {{($cb_button_add)?"checked":""}} type='radio' name='button_add' value='true'/> TRUE
                                     </label>
@@ -135,7 +135,7 @@
 
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label>Show Button Edit</label>
+                                    <label><i>{{cbLang('show_button_text')}}</i> {{cbLang('Edit')}}</label>
                                     <label class='radio-inline'>
                                         <input {{($cb_button_edit)?"checked":""}} type='radio' name='button_edit' value='true'/> TRUE
                                     </label>
@@ -147,7 +147,7 @@
 
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label>Show Button Delete</label>
+                                    <label><i>{{cbLang('show_button_text')}}</i> {{cbLang('Delete')}}</label>
                                     <label class='radio-inline'>
                                         <input {{($cb_button_delete)?"checked":""}} type='radio' name='button_delete' value='true'/> TRUE
                                     </label>
@@ -160,7 +160,7 @@
 
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label>Show Button Detail</label>
+                                    <label><i>{{cbLang('show_button_text')}}</i> {{cbLang('Detail')}}</label>
                                     <label class='radio-inline'>
                                         <input {{($cb_button_detail)?"checked":""}} type='radio' name='button_detail' value='true'/> TRUE
                                     </label>
@@ -181,7 +181,7 @@
 
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label>Show Button Show Data</label>
+                                    <label><i>{{cbLang('show_button_text')}}</i> {{cbLang('Show Data')}}</label>
                                     <label class='radio-inline'>
                                         <input {{($cb_button_show)?"checked":""}} type='radio' name='button_show' value='true'/> TRUE
                                     </label>
@@ -193,7 +193,7 @@
 
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label>Show Button Filter & Sorting</label>
+                                    <label><i>{{cbLang('show_button_text')}}</i> {{cbLang('Filter & Sorting')}}</label>
                                     <label class='radio-inline'>
                                         <input {{($cb_button_filter)?"checked":""}} type='radio' name='button_filter' value='true'/> TRUE
                                     </label>
@@ -205,7 +205,7 @@
 
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label>Show Button Import</label>
+                                    <label><i>{{cbLang('show_button_text')}}</i> {{cbLang('Import')}}</label>
                                     <label class='radio-inline'>
                                         <input {{($cb_button_import)?"checked":""}} type='radio' name='button_import' value='true'/> TRUE
                                     </label>
@@ -217,7 +217,7 @@
 
                             <div class="col-sm-12">
                                 <div class="form-group">
-                                    <label>Show Button Export</label>
+                                    <label><i>{{cbLang('show_button_text')}}</i> {{cbLang('Export')}}</label>
                                     <label class='radio-inline'>
                                         <input {{($cb_button_export)?"checked":""}} type='radio' name='button_export' value='true'/> TRUE
                                     </label>
@@ -234,8 +234,8 @@
             </div>
             <div class="box-footer">
                 <div align="right">
-                    <button type="button" onclick="location.href='{{CRUDBooster::mainpath('step3').'/'.$id}}'" class="btn btn-default">&laquo; Back</button>
-                    <input type="submit" name="submit" class='btn btn-primary' value='Save Module'>
+                    <button type="button" onclick="location.href='{{CRUDBooster::mainpath('step3').'/'.$id}}'" class="btn btn-default">&laquo; {{cbLang('button_back')}}</button>
+                    <input type="submit" name="submit" class='btn btn-primary' value="{{cbLang('button_save')}}">
                 </div>
             </div>
         </form>

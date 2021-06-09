@@ -22,7 +22,10 @@ class CBBackend
         if (CRUDBooster::myId() == '') {
             $url = url($admin_path.'/login');
 
-            return redirect($url)->with('message', cbLang('not_logged_in'));
+            return redirect($url)->with([
+                'message' => cbLang("not_logged_in"),
+                'message_type' => 'warning'
+            ]);
         }
         if (CRUDBooster::isLocked()) {
             $url = url($admin_path.'/lock-screen');
