@@ -1,5 +1,5 @@
 <?php
-return [ //teste
+return [ //alterando
     'email_footer' => 'Não responda a esse e-mail. Esta é uma mensagem gerada automaticamente. ',
     'login_message' => 'Faça o login para iniciar a sessão',
     'register_message' => 'Cadastro de novo usuário',
@@ -28,7 +28,7 @@ return [ //teste
     'text_default_help_number' => 'Você pode digitar somente números',
     'text_default_help_email' => 'Por favor digite um endereço de e-mail válido',
     'text_default_help_text' => 'Você pode digitar somente letras',
-    'text_default_help_url' => 'Por favor insira um URL válido',    
+    'text_default_help_url' => 'Por favor insira um URL válido',
     'text_delete' => 'Excluir',
     'text_dashboard' => 'Painel de Controle',
     'text_prefix_option' => '** Por favor selecione',
@@ -133,7 +133,7 @@ return [ //teste
     'button_reset' => 'Reset',
     'button_add_to_table' => 'Adicionar à Tabela',
     'button_new_password' => 'Cadastrar nova senha',
-
+    
     'export_dialog_title' => "Exportar dados",
     'export_dialog_filename' => 'Nome do arquivo',
     'export_dialog_help_filename' => 'Você pode renomear o arquivo de acordo com sua vontade',
@@ -206,7 +206,7 @@ return [ //teste
     'Import' => 'Importar',
     'Export' => 'Exportar',
     'Button Style' => 'Estilo do botão',
-    'Bulk Action' => 'Ações em massa',    
+    'Bulk Action' => 'Ações em massa',
     'Module Wizard' => '',
     'Generate New Module' => 'Gerar Novo Módulo',
     'Statistic' => 'Estatística',
@@ -286,14 +286,14 @@ return [ //teste
     'Result' => 'Resultado',
     'About' => 'Sobre',
     'Help' => 'Ajuda',
-
+    
     'click_here' => 'Clique aqui',
     
     
     /*
      * Criadas especificamente para seventec
-     * 
-     * 
+     *
+     *
      */
     'Activities' => 'Atividades',
     'activities' => 'Atividades',
@@ -386,7 +386,7 @@ return [ //teste
     /* PUBLIC */
     'Enter or Register' => 'Entre ou Registre-se',
     
-
+    
     /*
      * esse trecho serve para indicar sobre a orientação no html, assim como:
      * pull-left , pull-right , text-right ...
@@ -395,19 +395,19 @@ return [ //teste
      */
     'right' => 'right',
     'left' => 'left',
-
+    
     'all_rights_reserved' => 'Todos os Direitos Reservados',
     'copyright' => 'Copyright',
     'powered_by' => 'Desenvolvido por',
-
+    
     'notification_you_have' => 'você tem',
     'notification_notification' => 'Notificações',
     'notification_new' => 'Você tem uma nova notificação!',
-
+    
     'login_register_style' => 'Login Register Style',
     'email_setting' => 'Configurações de E-mail',
     'application_setting' => 'Configurações do Aplicativo',
-
+    
     // table filter & sort
     'filter_select_operator_type' => 'Selecione o operador',
     'filter_ascending' => 'ASCENDENTE',
@@ -439,22 +439,22 @@ return [ //teste
     // confirmation
     'confirmation_yes' => 'Sim!',
     'confirmation_no' => 'Não',
-
+    
     //filemanager
     'chose_an_image' => 'Escolha uma imagem ',
     'chose_an_file' => 'Escolha um arquivo ',
-
+    
     //action confirmation
     'confirmation_title' => 'Confirmação',
     'confirmation_text' => 'Tem certeza de que quer fazer isso?',
     'confirmButtonText' => 'Sim',
-
+    
     // privilege
     'privileges_name' => 'Nome do Perfil',
     'privileges_super_admin' => 'Super Admin',
     'privileges_standart_user' => 'Usuário Padrão',
     'privileges_ID' => 'ID',
-
+    
     'set_as_superadmin' => 'Configurar como Superadmin',
     'chose_theme_color_select' => '** Escolha a cor de fundo do tema',
     'chose_theme_color' => ' Cor do Tema',
@@ -466,14 +466,14 @@ return [ //teste
     'privileges_module_list_read' => 'Ler',
     'privileges_module_list_update' => 'Atualizar',
     'privileges_module_list_delete' => 'Excluir',
-
+    
     //datamodal
     'datamodal_select' => 'Selecionar',
     'datamodal_search_and_enter' => 'Pesquise e tecle enter...',
     'datamodal_enter_to_search' => 'Enter para pesquisar',
     'datamodal_browse_data' => 'Buscar Opções',
     'datamodal_browse_file' => 'Buscar Opções',
-
+    
     //child
     'table_detail' => 'Detalhes da Tabela',
     'your_file_size_is_too_big' => 'O tamanho do arquivo é muito grande',
